@@ -43,27 +43,27 @@ function daBears(){
 // Which function(s) access the "chair" variable and get "Too Big!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale1 = ["papaBear", "mamaBear"];
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale2 = ["goldilocks"];
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale3 = ["mamaBear"];
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale4 = ["daBears", "papaBear", "mamaBear", "goldilocks"];
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear"];
 
 
 // *************
@@ -83,9 +83,20 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
+function Vehicle() {
+  this.gasRemaining = 100;
+}
 
+Vehicle.prototype.drive = function () {
+  this.gasRemaining -= 25;
+}
 
+const charger = new Vehicle();
+const mustang = new Vehicle();
 
+charger.drive();
+mustang.drive();
+mustang.drive();
 
 // -----------------------------------------------------------------------------
 
@@ -109,7 +120,31 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
+/*******************************************************/
+/** This approach deletes extra spacing between Words **/
+/*******************************************************/
 
+// String.prototype.grammarPolice = function() {
+//   let string = this.valueOf().split(/[ ,]+/);
+//   string = string.map(str => {
+//     return str[0].toUpperCase() + str.substr(1).toLowerCase();
+//   });
+//   string = string.join(' ')
+//   return string;
+// }
+
+String.prototype.grammarPolice = function() {
+  const regex = /\b(\w(\w)+)\b/g;
+  let string = this.valueOf().replace(regex, function(str) {
+    return str[0].toUpperCase() + str.substr(1).toLocaleLowerCase();
+  });
+  return string;
+}
+
+let string = 'OH HELLO   THERE';
+
+let stringTransformed = string.grammarPolice()
+console.log(stringTransformed)
 
 // *************
 // * PROBLEM 4 *
@@ -127,7 +162,11 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
-
+function valueType(parameter1, parameter2) {
+  if ( parameter1 === parameter2 ) return 'Exactly the same';
+  if ( parameter1 == parameter2) return 'Same value, different types';
+  else return 'Different values';
+}
 
 // *************
 // * PROBLEM 5 *
@@ -141,3 +180,7 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 var theAnswer = "Unknown";
 
 // CODE HERE...
+
+async function promiseCatcher( promise ) {
+  theAnswer = await promise;
+}
